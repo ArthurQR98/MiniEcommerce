@@ -7,11 +7,10 @@ import (
 )
 
 type Review struct {
-	ID       primitive.ObjectID `bson:"_id" json:"_id,omitempty"`
-	Product  string             `bson:"productId" json:"productId"`
-	PostDate time.Time          `bson:"postDate" json:"postDate"`
+	ID       primitive.ObjectID `bson:"_id,omitempty"`
+	PostDate time.Time          `bson:"postDate" json:"postDate,omitempty"`
 	Title    string             `bson:"title" json:"title"`
 	Body     string             `bson:"body" json:"body"`
-	Customer Customer           `bson:"customer" json:"customer"`
+	Customer primitive.ObjectID `bson:"customerId,omitempty" json:"customerId,omitempty"`
 	Rating   int                `bson:"rating" json:"rating,omitempty"`
 }
