@@ -7,8 +7,8 @@ import (
 )
 
 type Product struct {
-	ID          primitive.ObjectID `bson:"_id" json:"_id,omitempty"`
-	Sku         int64              `bson:"sku" json:"omitempty"`
+	ID          primitive.ObjectID `bson:"_id,omitempty"`
+	Sku         int64              `bson:"sku" json:"sku,omitempty"`
 	Slug        string             `bson:"slug" json:"slug,omitempty"`
 	Name        string             `bson:"name" json:"name,omitempty"`
 	Description string             `bson:"description" json:"description,omitempty"`
@@ -23,7 +23,7 @@ type Product struct {
 		Cost   int64 `bson:"cost" json:"cost"`
 		Retail int64 `bson:"retail" json:"retail"`
 	}
-	Categories []Category `bson:"category" json:"category"`
-	Tags       []string   `bson:"tags" json:"tags,omitempty"`
-	Reviews    []Review   `bson:"review" json:"review"`
+	Categories primitive.ObjectID   `bson:"category" json:"category"`
+	Tags       []string             `bson:"tags" json:"tags,omitempty"`
+	Reviews    []primitive.ObjectID `bson:"review,omitempty" json:"reviews,omitempty"`
 }
