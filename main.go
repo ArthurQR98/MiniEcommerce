@@ -5,11 +5,13 @@ import (
 
 	"github.com/ArthurQR98/e-commerce/config"
 	"github.com/ArthurQR98/e-commerce/src/routes"
+	valid "github.com/asaskevich/govalidator"
 	"github.com/joho/godotenv"
 )
 
 func main() {
 	LoadEnv()
+	valid.SetFieldsRequiredByDefault(true)
 	if config.CheckConnection() == 0 {
 		log.Fatal("Connection failed")
 		return
