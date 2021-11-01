@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/ArthurQR98/e-commerce/src/controllers"
 	"github.com/ArthurQR98/e-commerce/src/middlewares"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
@@ -17,12 +18,17 @@ func Routes() {
 	router.HandleFunc("/", func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusCreated)
-		json.NewEncoder(w).Encode("Hello Golang")
+		json.NewEncoder(w).Encode("E-commerce APIRestful - Golang")
 	}).Methods("GET")
 
-	//TODO: probar los nuevo endpoints
-	router.HandleFunc("/auth/sign-up", middlewares.ValidateDB(Register)).Methods("POST")
-	router.HandleFunc("/auth/sign-in", middlewares.ValidateDB(Login)).Methods("POST")
+	router.HandleFunc("/auth/sign-up", middlewares.ValidateDB(controllers.Register)).Methods("POST")
+	router.HandleFunc("/auth/sign-in", middlewares.ValidateDB(controllers.Login)).Methods("POST")
+
+	router.HandleFunc("/categories", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.CreateCategory))).Methods("POST")
+
+	router.HandleFunc("/reviews", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.CreateReview))).Methods("POST")
+
+	router.HandleFunc("/products", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.CreateProduct))).Methods("POST")
 
 	PORT := os.Getenv("PORT")
 	controller := cors.AllowAll().Handler(router)
