@@ -10,12 +10,11 @@ import (
 	"github.com/ArthurQR98/e-commerce/src/services"
 )
 
-// TODO: reparar los mensajes a ingles
 func CreateReview(w http.ResponseWriter, r *http.Request) {
 	var review models.Review
 	err := json.NewDecoder(r.Body).Decode(&review)
 	if err != nil {
-		http.Error(w, "Ocurrio un error", 400)
+		http.Error(w, "Error creating review "+err.Error(), 400)
 		return
 	}
 	register := models.Review{
@@ -27,11 +26,11 @@ func CreateReview(w http.ResponseWriter, r *http.Request) {
 	}
 	_, status, err := services.CreateReview(register)
 	if err != nil {
-		http.Error(w, "Ocurrio un error al intentar insertar el registro, intente nuevamente. "+err.Error(), 400)
+		http.Error(w, "An error occurred while trying to register, please try again. "+err.Error(), 400)
 		return
 	}
 	if !status {
-		http.Error(w, "No se ha logrado insertar el review", 400)
+		http.Error(w, "The review could not be saved.", 400)
 		return
 	}
 	w.WriteHeader(http.StatusCreated)

@@ -30,6 +30,8 @@ func Routes() {
 
 	router.HandleFunc("/products", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.CreateProduct))).Methods("POST")
 
+	router.HandleFunc("/orders", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.CreateOrder))).Methods("POST")
+
 	PORT := os.Getenv("PORT")
 	controller := cors.AllowAll().Handler(router)
 	fmt.Println("-- Backend running on PORT " + PORT + " --")
