@@ -1,20 +1,14 @@
 package services
 
 import (
-	"context"
-	"time"
-
-	"github.com/ArthurQR98/e-commerce/config"
 	"github.com/ArthurQR98/e-commerce/src/models"
+	"github.com/ArthurQR98/e-commerce/src/utils"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
 func CheckIfExistUser(email string) (models.Customer, bool, string) {
-	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "customers")
 	defer cancel()
-	db := config.MongoCN.Database("ecommerce")
-	col := db.Collection("customers")
-
 	condition := bson.M{"email": email}
 	var result models.Customer
 

@@ -3,19 +3,16 @@ package services
 import (
 	"context"
 	"log"
-	"time"
 
-	"github.com/ArthurQR98/e-commerce/config"
 	"github.com/ArthurQR98/e-commerce/src/models"
+	"github.com/ArthurQR98/e-commerce/src/utils"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func GetProducts(paginate int64) ([]*models.Product, bool) {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
+	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "products")
 	defer cancel()
-	db := config.MongoCN.Database("ecommerce")
-	col := db.Collection("products")
 
 	var results []*models.Product
 	option := options.Find()

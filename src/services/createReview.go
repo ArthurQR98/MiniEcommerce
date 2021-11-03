@@ -1,20 +1,15 @@
 package services
 
 import (
-	"context"
-	"time"
-
-	"github.com/ArthurQR98/e-commerce/config"
 	"github.com/ArthurQR98/e-commerce/src/models"
+	"github.com/ArthurQR98/e-commerce/src/utils"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func CreateReview(review models.Review) (string, bool, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
+	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "reviews")
 	defer cancel()
-	db := config.MongoCN.Database("ecommerce")
-	col := db.Collection("reviews")
 
 	register := bson.M{
 		"postDate":   review.PostDate,
