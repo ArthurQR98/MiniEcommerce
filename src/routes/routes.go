@@ -25,6 +25,7 @@ func Routes() {
 	router.HandleFunc("/auth/sign-in", middlewares.ValidateDB(controllers.Login)).Methods("POST")
 
 	router.HandleFunc("/users", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.ReadCustomers))).Methods("GET")
+	router.HandleFunc("/users", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.UpdateCustomer))).Methods("PUT")
 
 	router.HandleFunc("/categories", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.CreateCategory))).Methods("POST")
 	router.HandleFunc("/categories", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.ReadCategorys))).Methods("GET")
