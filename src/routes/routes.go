@@ -32,12 +32,14 @@ func Routes() {
 
 	router.HandleFunc("/reviews", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.CreateReview))).Methods("POST")
 	router.HandleFunc("/reviews", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.ReadReviews))).Methods("GET")
+	router.HandleFunc("/reviews", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.UpdateReview))).Methods("PUT")
 
 	router.HandleFunc("/products", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.CreateProduct))).Methods("POST")
 	router.HandleFunc("/products", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.ReadProducts))).Methods("GET")
 
 	router.HandleFunc("/orders", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.CreateOrder))).Methods("POST")
 	router.HandleFunc("/orders", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.ReadOrders))).Methods("GET")
+	router.HandleFunc("/orders", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.UpdateOrder))).Methods("PUT")
 
 	PORT := os.Getenv("PORT")
 	controller := cors.AllowAll().Handler(router)
