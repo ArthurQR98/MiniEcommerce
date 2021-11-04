@@ -7,11 +7,10 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func UpdateOrder(order models.Order, ID string) (bool, error) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "orders")
+func UpdateProduct(product models.Product, ID string) (bool, error) {
+	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "products")
 	defer cancel()
-	order.Items.Quantity = len(order.Items.Product)
-	updateString := bson.M{"$set": order}
+	updateString := bson.M{"$set": product}
 	objID, _ := primitive.ObjectIDFromHex(ID)
 	filter := bson.M{"_id": bson.M{"$eq": objID}}
 	_, err := col.UpdateOne(ctx, filter, updateString)

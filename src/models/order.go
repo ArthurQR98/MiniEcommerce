@@ -14,5 +14,5 @@ type Order struct {
 		Product  []primitive.ObjectID `bson:"products" json:"products"`
 		Quantity int                  `bson:"quantity" json:"quantity"`
 	}
-	Date time.Time `bson:"date" json:"date"`
+	Date time.Time `bson:"date,omitempty" json:"date,omitempty"`
 }
