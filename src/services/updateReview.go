@@ -8,7 +8,7 @@ import (
 )
 
 func UpdateReview(review models.Review, ID string) (bool, error) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "reviews")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "reviews")
 	defer cancel()
 	register := make(map[string]interface{})
 	if len(review.Title) > 0 {

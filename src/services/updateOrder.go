@@ -8,7 +8,7 @@ import (
 )
 
 func UpdateOrder(order models.Order, ID string) (bool, error) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "orders")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "orders")
 	defer cancel()
 	order.Items.Quantity = len(order.Items.Product)
 	updateString := bson.M{"$set": order}

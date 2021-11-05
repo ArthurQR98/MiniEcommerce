@@ -11,7 +11,7 @@ import (
 )
 
 func GetCategorys(paginate int64) ([]*models.Category, bool) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "category")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "category")
 	defer cancel()
 
 	var results []*models.Category

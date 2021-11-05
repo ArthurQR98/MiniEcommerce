@@ -11,7 +11,7 @@ import (
 )
 
 func GetCustomers(paginate int64) ([]*models.Customer, bool) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "customers")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "customers")
 	defer cancel()
 
 	var results []*models.Customer

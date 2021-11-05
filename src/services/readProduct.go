@@ -11,7 +11,7 @@ import (
 )
 
 func GetProducts(paginate int64) ([]*models.Product, bool) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "products")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "products")
 	defer cancel()
 
 	var results []*models.Product

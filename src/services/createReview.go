@@ -8,7 +8,7 @@ import (
 )
 
 func CreateReview(review models.Review) (string, bool, error) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "reviews")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "reviews")
 	defer cancel()
 
 	register := bson.M{

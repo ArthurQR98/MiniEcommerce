@@ -7,7 +7,7 @@ import (
 )
 
 func CreateProduct(product models.Product) (string, bool, error) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "products")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "products")
 	defer cancel()
 
 	result, err := col.InsertOne(ctx, product)

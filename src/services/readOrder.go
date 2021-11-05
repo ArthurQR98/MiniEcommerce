@@ -11,7 +11,7 @@ import (
 )
 
 func GetOrders(paginate int64) ([]*models.Order, bool) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "orders")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "orders")
 	defer cancel()
 
 	var results []*models.Order

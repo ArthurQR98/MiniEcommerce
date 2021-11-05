@@ -8,7 +8,7 @@ import (
 )
 
 func UpdateCustomer(customer models.Customer, ID string) (bool, error) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "customers")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "customers")
 	defer cancel()
 
 	register := make(map[string]interface{})

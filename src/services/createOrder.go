@@ -7,7 +7,7 @@ import (
 )
 
 func CreateOrder(order models.Order) (string, bool, error) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "orders")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "orders")
 	defer cancel()
 
 	result, err := col.InsertOne(ctx, order)

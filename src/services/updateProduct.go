@@ -8,7 +8,7 @@ import (
 )
 
 func UpdateProduct(product models.Product, ID string) (bool, error) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "products")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "products")
 	defer cancel()
 	updateString := bson.M{"$set": product}
 	objID, _ := primitive.ObjectIDFromHex(ID)

@@ -11,7 +11,7 @@ import (
 )
 
 func GetReviews(paginate int64) ([]*models.Review, bool) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "reviews")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "reviews")
 	defer cancel()
 
 	var results []*models.Review

@@ -8,7 +8,7 @@ import (
 )
 
 func UpdateCategory(category models.Category, ID string) (bool, error) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "category")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "category")
 	defer cancel()
 
 	register := make(map[string]interface{})

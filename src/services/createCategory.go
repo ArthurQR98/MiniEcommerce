@@ -8,7 +8,7 @@ import (
 )
 
 func CreateCategory(category models.Category) (string, bool, error) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "category")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "category")
 	defer cancel()
 
 	register := bson.M{

@@ -7,7 +7,7 @@ import (
 )
 
 func RegisterCustomer(customer models.Customer) (string, bool, error) {
-	ctx, col, cancel := utils.ConnectDatabase("ecommerce", "customers")
+	ctx, col, cancel := utils.ConnectDatabase(DBname, "customers")
 	defer cancel()
 
 	customer.Password, _ = EncryptPassword(customer.Password)
