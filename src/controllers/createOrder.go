@@ -8,6 +8,7 @@ import (
 	"github.com/ArthurQR98/e-commerce/src/auth"
 	"github.com/ArthurQR98/e-commerce/src/models"
 	"github.com/ArthurQR98/e-commerce/src/services"
+	"github.com/ArthurQR98/e-commerce/src/utils"
 )
 
 func CreateOrder(w http.ResponseWriter, r *http.Request) {
@@ -17,6 +18,17 @@ func CreateOrder(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error creating order", 400)
 		return
 	}
+
+	if len(order.Items.Product) > 0 {
+		for _, v := range order.Items.Product {
+			find, _ := utils.FindIfExistProduct(v)
+			if !find {
+				http.Error(w, "Some of the products do not exist ", 400)
+				return
+			}
+		}
+	}
+
 	register := models.Order{
 		User:  auth.IDCustomer,
 		State: order.State,

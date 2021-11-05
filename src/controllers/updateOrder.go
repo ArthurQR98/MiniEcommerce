@@ -6,6 +6,7 @@ import (
 
 	"github.com/ArthurQR98/e-commerce/src/models"
 	"github.com/ArthurQR98/e-commerce/src/services"
+	"github.com/ArthurQR98/e-commerce/src/utils"
 )
 
 func UpdateOrder(w http.ResponseWriter, r *http.Request) {
@@ -20,6 +21,17 @@ func UpdateOrder(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Incorrect Data "+err.Error(), 400)
 		return
 	}
+
+	if len(order.Items.Product) > 0 {
+		for _, v := range order.Items.Product {
+			find, _ := utils.FindIfExistProduct(v)
+			if !find {
+				http.Error(w, "Some of the products do not exist ", 400)
+				return
+			}
+		}
+	}
+
 	var status bool
 	status, err = services.UpdateOrder(order, string(ID))
 	if err != nil {
