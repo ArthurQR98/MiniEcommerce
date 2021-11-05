@@ -35,6 +35,7 @@ func Routes() {
 	router.HandleFunc("/reviews", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.CreateReview))).Methods("POST")
 	router.HandleFunc("/reviews", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.ReadReviews))).Methods("GET")
 	router.HandleFunc("/reviews", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.UpdateReview))).Methods("PUT")
+	router.HandleFunc("/reviews", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.DeleteReview))).Methods("DELETE")
 
 	router.HandleFunc("/products", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.CreateProduct))).Methods("POST")
 	router.HandleFunc("/products", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.ReadProducts))).Methods("GET")
