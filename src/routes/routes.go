@@ -43,6 +43,7 @@ func Routes() {
 	router.HandleFunc("/orders", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.CreateOrder))).Methods("POST")
 	router.HandleFunc("/orders", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.ReadOrders))).Methods("GET")
 	router.HandleFunc("/orders", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.UpdateOrder))).Methods("PUT")
+	router.HandleFunc("/orders", middlewares.ValidateDB(middlewares.ValidateJWT(controllers.DeleteOrder))).Methods("DELETE")
 
 	PORT := os.Getenv("PORT")
 	controller := cors.AllowAll().Handler(router)
