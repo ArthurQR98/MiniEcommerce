@@ -10,7 +10,7 @@ import (
 
 var DBname = os.Getenv("MONGO_DB")
 
-func FindIfExistCategory(id primitive.ObjectID) (bool, string) {
+func IsExistsCategory(id primitive.ObjectID) (bool, string) {
 	ctx, col, cancel := ConnectDatabase(DBname, "category")
 	defer cancel()
 
@@ -24,7 +24,7 @@ func FindIfExistCategory(id primitive.ObjectID) (bool, string) {
 	return true, ""
 }
 
-func FindIfExistReview(id primitive.ObjectID) (bool, string) {
+func IsExistsReview(id primitive.ObjectID) (bool, string) {
 	ctx, col, cancel := ConnectDatabase(DBname, "reviews")
 	defer cancel()
 
@@ -38,7 +38,7 @@ func FindIfExistReview(id primitive.ObjectID) (bool, string) {
 	return true, ""
 }
 
-func FindIfExistProduct(id primitive.ObjectID) (bool, string) {
+func IsExistsProduct(id primitive.ObjectID) (bool, string) {
 	ctx, col, cancel := ConnectDatabase(DBname, "products")
 	defer cancel()
 

@@ -24,7 +24,7 @@ func UpdateOrder(w http.ResponseWriter, r *http.Request) {
 
 	if len(order.Items.Product) > 0 {
 		for _, v := range order.Items.Product {
-			find, _ := utils.FindIfExistProduct(v)
+			find, _ := utils.IsExistsProduct(v)
 			if !find {
 				http.Error(w, "Some of the products do not exist ", 400)
 				return

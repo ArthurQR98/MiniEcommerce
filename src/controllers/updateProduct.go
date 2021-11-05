@@ -22,7 +22,7 @@ func UpdateProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	find, _ := utils.FindIfExistCategory(product.Categories)
+	find, _ := utils.IsExistsCategory(product.Categories)
 	if !find {
 		http.Error(w, "Category don't exist ", 400)
 		return
@@ -30,7 +30,7 @@ func UpdateProduct(w http.ResponseWriter, r *http.Request) {
 
 	if len(product.Reviews) > 0 {
 		for _, v := range product.Reviews {
-			find, _ := utils.FindIfExistReview(v)
+			find, _ := utils.IsExistsReview(v)
 			if !find {
 				http.Error(w, "Some of the reviews do not exist ", 400)
 				return
